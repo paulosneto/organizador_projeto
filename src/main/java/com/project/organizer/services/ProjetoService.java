@@ -25,10 +25,10 @@ public class ProjetoService {
 
     public boolean verificaSeExisteProjeto(ProjetoDTO projetoDTO){
 
-        Optional<List<Projeto>> verificaProjeto = this.projetoRepository.findProjetoByNomeProjeto(projetoDTO.nomeProjeto());
-        if(verificaProjeto.isPresent()){
-            return true;
-        }
+        List<Projeto> verificaProjeto = this.projetoRepository.findProjetoByNomeProjetoContainingIgnoreCaseOrDescricaoProjetoContainingIgnoreCase(projetoDTO.nomeProjeto(), projetoDTO.descricaoProjeto());
+//        if(verificaProjeto.isPresent()){
+//            return true;
+//        }
         return false;
     }
 
@@ -37,10 +37,34 @@ public class ProjetoService {
         return ltProjetos;
     }
 
-    public Optional<List<Projeto>> buscarProjetosPorNome(ProjetoDTO projetoDTO){
+    public List<Projeto> buscarProjetosPorNome(String valor){
 
-        boolean existe = verificaSeExisteProjeto(projetoDTO);
-       Optional<List<Projeto>> ltProjeto = this.projetoRepository.findProjetoByNomeProjeto(projetoDTO.nomeProjeto());
-        return ltProjeto;
+        //boolean existe = verificaSeExisteProjeto(projetoDTO);
+
+       List<Projeto> ltProjeto = this.projetoRepository.findProjetoByNomeProjetoContainingIgnoreCaseOrDescricaoProjetoContainingIgnoreCase(valor, valor);
+
+       return ltProjeto;
     }
+
+    public Projeto atualizarProjeto(int idprojeto, ProjetoDTO projetoDTO){
+
+        Projeto novoProjeto = this.projetoRepository.findById(idprojeto).orElseThrow(() -> new RuntimeException("Projeto não encontrado"));
+
+             novoProjeto.setNomeProjeto(projetoDTO.nomeProjeto());
+             novoProjeto.setDescricaoProjeto(projetoDTO.descricaoProjeto());
+             novoProjeto.setOrcamentoProjeto(projetoDTO.orcamentoProjeto());
+             novoProjeto.setStatusProjeto(projetoDTO.statusProjeto());
+             novoProjeto.setData_inicio(projetoDTO.dataInicio());
+             novoProjeto.setData_fim(projetoDTO.dataFim());
+
+            return this.projetoRepository.save(novoProjeto);
+    }
+
+    public void excluirProjetoPorID(int idProjeto){
+        var projeto = this.projetoRepository.findById(idProjeto).orElseThrow(() -> new RuntimeException("Não foi encontrado nenhum Projeto com o ID informado."));
+        this.projetoRepository.delete(projeto);
+
+    }
+
+
 }
