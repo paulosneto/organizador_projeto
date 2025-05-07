@@ -7,5 +7,5 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ProjetoRepository extends JpaRepository<Projeto, Integer> {
-    Optional<List<Projeto>> findProjetoByNomeProjeto(String nome);
+List<Projeto> findProjetoByNomeProjetoContainingIgnoreCaseOrDescricaoProjetoContainingIgnoreCase(String nome, String descricao);
 }
