@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.sql.Timestamp;
+
 @Entity
 @Getter
 @Setter
@@ -17,16 +19,20 @@ public class Projeto {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "id_projeto")
+    @Column(name = "idprojeto")
     private int idProjeto;
-    @Column(name = "nome_projeto")
+    @Column(name = "nomeprojeto")
     private String nomeProjeto;
-    @Column(name = "descricao_projeto")
+    @Column(name = "descricaoprojeto")
     private String descricaoProjeto;
-    @Column(name = "status_projeto")
+    @Column(name = "statusprojeto")
     private String statusProjeto;
-    @Column(name = "prcamento_projeto")
+    @Column(name = "orcamentoprojeto")
     private double orcamentoProjeto;
+    @Column(name = "datainicio")
+    private Timestamp data_inicio;
+    @Column(name = "datafim")
+    private Timestamp data_fim;
 
 
     public Projeto(ProjetoDTO projetoDTO) {
@@ -34,5 +40,9 @@ public class Projeto {
         this.descricaoProjeto = projetoDTO.descricaoProjeto();
         this.statusProjeto = projetoDTO.statusProjeto();
         this.orcamentoProjeto = projetoDTO.orcamentoProjeto();
+        this.data_inicio = projetoDTO.dataInicio();
+        this.data_fim = projetoDTO.dataFim();
     }
+
+
 }
