@@ -1,4 +1,8 @@
 package com.project.organizer.dto;
 
-public record ProjetoDTO(String nomeProjeto, String descricaoProjeto, String statusProjeto, double orcamentoProjeto) {
+import org.antlr.v4.runtime.misc.NotNull;
+
+import java.sql.Timestamp;
+
+public record ProjetoDTO(@NotNull String nomeProjeto, @NotNull String descricaoProjeto, @NotNull String statusProjeto, double orcamentoProjeto, Timestamp dataInicio, Timestamp dataFim) {
 }
