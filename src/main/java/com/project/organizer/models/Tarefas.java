@@ -6,15 +6,15 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.cglib.core.Local;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.util.Optional;
 
+@Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
 @Table(name = "tarefas")
 public class Tarefas {
 
@@ -24,23 +24,33 @@ public class Tarefas {
     private int idTarefa;
     @Column(name = "descricaoTarefa", nullable = false)
     private String descricaoTarefa;
-    @Column(name = "projeto", nullable = false)
-    private String projeto;
+    @ManyToOne
+    @JoinColumn(name = "idprojeto")
+    private Projeto projeto;
     @Column(name = "dataInicio")
-    private LocalDateTime dataInicio;
+    private LocalDate dataInicio;
     @Column(name = "dataFim")
-    private LocalDateTime dataFim;
-    @Column(name = "taferaPredecedora")
-    private String tarefaPredecedora;
+    private LocalDate dataFim;
+    @ManyToOne
+    @JoinColumn(name = "idTaferaPredecedora")
+    private Tarefas tarefaPredecedora;
     @Column(name = "statusTarefa")
     private String statusTarefa;
 
     public Tarefas(TarefasDTO tarefasDTO){
         this.descricaoTarefa = tarefasDTO.descricaoTarefa();
-        this.projeto = tarefasDTO.projeto();
+
+        if(tarefasDTO.idprojeto() != 0){
+            this.projeto = new Projeto();
+            this.projeto.setIdProjeto(tarefasDTO.idprojeto());
+        }
         this.dataInicio = tarefasDTO.dataInicio();
         this.dataFim = tarefasDTO.dataFim();
-        this.tarefaPredecedora = tarefasDTO.tarefaPredecedora();
+
+        if(tarefasDTO.idTarefaPredecedora() != 0) {
+            this.tarefaPredecedora = new Tarefas();
+            this.tarefaPredecedora.setIdTarefa(tarefasDTO.idTarefaPredecedora());
+        }
         this.statusTarefa = tarefasDTO.statusTarefa();
     }
 
