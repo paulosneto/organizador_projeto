@@ -10,7 +10,7 @@ import org.springframework.validation.annotation.Validated;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-public record TarefasDTO(@NotBlank(message = "Descição é obrigatória") String descricaoTarefa,
+public record TarefasDTO(@NotBlank String descricaoTarefa,
                           Integer idprojeto,
                           LocalDate dataInicio,
                           LocalDate dataFim,
