@@ -24,7 +24,7 @@ public class Projeto {
     @Column(name = "idprojeto")
     private int idProjeto;
     @NotEmpty(message = "o nome do projeto é obrigatorio")
-    @Column(name = "nomeprojeto", nullable = false)
+    @Column(name = "nomeprojeto", nullable = false, unique = true)
     private String nomeProjeto;
     @Column(name = "descricaoprojeto")
     private String descricaoProjeto;
