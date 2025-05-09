@@ -35,8 +35,10 @@ public class SecurityConfig extends SecurityFilter{
                 .csrf(csrf -> csrf.disable() )
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize -> authorize
-                        //.requestMatchers(HttpMethod.POST, "/api/product" ).hasRole("ADMIN")
-                        //.requestMatchers(HttpMethod.POST, "/api/category" ).hasRole("ADMIN")
+                        .requestMatchers("/swagger-ui/index.html", "/v3/api-docs/**").permitAll()
+                        .requestMatchers("/swagger-ui.html", "/swagger-ui/**", "/v3/api-docs/**", "/swagger-ui/index.html", "/swagger-ui/swagger-ui.css",
+                                "/swagger-ui/swagger-ui-bundle.js", "/swagger-ui/swagger-ui-standalone-preset.js",
+                                "/swagger-ui/favicon-32x32.png", "/swagger-ui/favicon-16x16.png").permitAll()  // Libera todos os recursos do Swagger
                         .requestMatchers(HttpMethod.POST,"/auth/register").permitAll()
                         .requestMatchers(HttpMethod.POST,"/auth/login").permitAll()
                         .anyRequest().authenticated()
