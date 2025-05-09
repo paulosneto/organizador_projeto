@@ -6,16 +6,19 @@ import com.auth0.jwt.exceptions.JWTCreationException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.project.organizer.security.domain.Users;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 
+
 @Service
 public class TokenService {
 
-    @Value("${jwt.secret}")
+    //@Value("${jwt.secret}")
+    @Value("${TOKEN_SECRET}")
     private String secret;
 
     public String generateToken(Users user) {
