@@ -1,4 +1,8 @@
 
+### A imagem docker do projeto está publicada neste endereço:
+#### http://191.252.103.130:8084/swagger-ui/index.html#/
+
+
 **Como** usuário autenticado,  
 **Quero** criar, visualizar, editar e excluir projetos e tarefas no sistema,  
 **Para** organizar e gerenciar as informações de cada projeto de tarefa de forma eficiente.
