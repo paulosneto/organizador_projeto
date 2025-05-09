@@ -2,6 +2,7 @@
 ### A imagem docker do projeto está publicada neste endereço:
 #### http://191.252.103.130:8084/swagger-ui/index.html#/
 
+**docker pull paulosneto/project-organizer:latest**
 
 **Como** usuário autenticado,  
 **Quero** criar, visualizar, editar e excluir projetos e tarefas no sistema,  
