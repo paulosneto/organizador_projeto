@@ -4,6 +4,10 @@
 
 **docker pull paulosneto/project-organizer:latest**
 
+
+![image](https://github.com/user-attachments/assets/5e3afeb9-6fe9-4b23-81cc-2306b32a66c2)
+
+
 **Como** usuário autenticado,  
 **Quero** criar, visualizar, editar e excluir projetos e tarefas no sistema,  
 **Para** organizar e gerenciar as informações de cada projeto de tarefa de forma eficiente.
@@ -37,3 +41,5 @@
 5. Deve ser possível listar todas as tarefas de um projeto e filtrá-las por **status (Concluída | Não Concluída)**.
 6. O sistema deve permitir a **atualização do status da tarefa**, garantindo que apenas usuários autorizados possam marcá-la como "Concluída".
 7. O sistema pode permitir a visualização do **progresso do projeto** com base nas tarefas concluídas e não concluídas.
+
+
